@@ -2,15 +2,27 @@ var users = ['fritz@gmail.com', 'hans@gmail.com'];
 var BLOCKED_STATES = ['blocked', 'inactive', 'temporarlyBlocked'];
 
 function createUser(user) {
-    if (user.password == null || user.password.length < 6 || !containsNumber(user.password)) {
+    if (!isValidPassword(user.password)) {
         return 'invalid password for user';
     }
-    if (!users.includes(user.name) && !BLOCKED_STATES.includes(user.state)) {
-        insertUser(user);
-    } else {
+    if (alreadyExists(user.name) || isBlocked(user.state)) {
         return 'user can not be created';
     }
+    insertUser(user);
 }
+
+function alreadyExists(name) {
+    return users.includes(name);
+}
+
+function isBlocked(state) {
+    return BLOCKED_STATES.includes(state)
+}
+
+function isValidPassword(password) {
+    return password != null && password.length > 5 && containsNumber(password);
+}
+
 
 function containsNumber(anyString) {
     return /\d/.test(anyString);
