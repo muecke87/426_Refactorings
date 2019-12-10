@@ -2,7 +2,8 @@ var users = ['fritz@gmail.com', 'hans@gmail.com'];
 var BLOCKED_STATES = ['blocked', 'inactive', 'temporarlyBlocked'];
 
 function createUser(user) {
-    if (user.password == null || user.password.length < 6 || !containsNumber(user.password)) {
+    // password needs to have minimum length of 6 and contain at least one number
+    if (user.password == null || user.password.length < 6 || !(/\d/.test(user.password))) {
         return 'invalid password for user';
     }
     if (!users.includes(user.name) && !BLOCKED_STATES.includes(user.state)) {
@@ -10,10 +11,6 @@ function createUser(user) {
     } else {
         return 'user can not be created';
     }
-}
-
-function containsNumber(anyString) {
-    return /\d/.test(anyString);
 }
 
 function insertUser(user) {
