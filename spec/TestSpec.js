@@ -2,7 +2,6 @@ var users = ['fritz@gmail.com', 'hans@gmail.com'];
 var BLOCKED_STATES = ['blocked', 'inactive', 'temporarlyBlocked'];
 
 function createUser(user) {
-    // password needs to have minimum length of 6 and contain at least one number
     if (user.password == null || user.password.length < 6 || !(/\d/.test(user.password))) {
         return 'invalid password for user';
     }
