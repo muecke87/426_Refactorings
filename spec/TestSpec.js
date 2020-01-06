@@ -30,7 +30,7 @@ describe('unit tests', function () {
         });
         describe('password is too short', function () {
             it('should return message', function () {
-                this.user.password = 'kurz';
+                this.user.password = 'kurz4';
                 expect(createUser(this.user)).toEqual(this.message);
             });
         });
