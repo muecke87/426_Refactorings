@@ -1,5 +1,5 @@
-var users = ['fritz@gmail.com', 'hans@gmail.com'];
-var BLOCKED_STATES = ['blocked', 'inactive', 'temporarlyBlocked'];
+const users = ['fritz@gmail.com', 'hans@gmail.com'];
+const BLOCKED_STATES = ['blocked', 'inactive', 'temporarilyBlocked'];
 
 function createUser(user) {
     if (!isValidPassword(user.password)) {
@@ -78,12 +78,12 @@ describe('unit tests', function () {
         describe('user is blocked', function () {
             it('should return message', function () {
                 this.user.name = 'notexisting@mail.com';
-                this.user.state = 'temporarlyBlocked';
+                this.user.state = 'temporarilyBlocked';
                 expect(createUser(this.user)).toEqual(this.message);
             });
         });
         describe('user not existing and not blocked', function () {
-            it('should insert usert', function () {
+            it('should insert user', function () {
                 this.user.name = 'notexisting@mail.com';
                 this.user.state = 'active';
                 expect(createUser(this.user)).toEqual(undefined);
